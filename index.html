@@ -12,10 +12,22 @@
 <script src="js/projects.js"></script>
 
 <script src="js/processing.min.js"></script>
+<script src="js/fuzzie.js" type="text/processing" data-processing-target="processing-canvas"></script>
+<script type="application/javascript">
+	var processingInstance;
 
-<script type="text/javascript" src="js/wheelnav/raphael.min.js"></script>
-<script type="text/javascript" src="js/wheelnav/raphael.icons.min.js"></script>
-<script type="text/javascript" src="js/wheelnav/wheelnav.js"></script>
+	function changeColor() {
+		if (!processingInstance) {
+			processingInstance = Processing.getInstanceById('processing-canvas');
+		}
+		processingInstance.redraw();
+	}
+</script>
+
+<script type="application/javascript" src="js/wheelnav/raphael.min.js"></script>
+<script type="application/javascript" src="js/wheelnav/raphael.icons.min.js"></script>
+<script type="application/javascript" src="js/wheelnav/wheelnav.js"></script>
+<script src="js/wheelnav/drinko.js"></script>
 
 <!--[if IE]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -23,126 +35,7 @@
 
 </head>
 
-<body>
-
-	<script type="text/processing" data-processing-target="processing-canvas">
-		// Colorful Fuzzie by Fred Fagan
-		// Penn State ART 297a with James Stone
-		// January 29, 2016
-
-		// Set up the sketch at the beginning of the run
-		void setup() {
-	  		// Set the size of the sketch
-	  		size(440,350);
-	  		noLoop(); // So that it doesn't keep changing colors and moving lines
-		}
-
-		// Begin drawing - this will only occur once because of the noLoop() function
-		void draw() {
-	  		// Set the background of the sketch to white
-	  		background(255);
-
-	  		// Feet
-	  		// Set the position and size of the ellipse
-			fill(255);
-	  		ellipse(175, 295, 100, 50);
-	  		ellipse(275, 295, 100, 50);
-
-	  		// Get random hair color each run
-	  		int hairColor = int(random(1,6));
-
-	  		// Switch between each case of random integers
-	  		switch(hairColor) {
-	      		case 1:
-	        		stroke(0); // Black
-	        		break;
-	      		case 2:
-	        		stroke(0, 128, 255); // Blue
-	        		break;
-	      		case 3:
-	        		stroke(255, 102, 102); // Pink
-	        		break;
-	      		case 4:
-	        		stroke(0, 204, 0); // Green
-	        		break;
-	      		case 5:
-	        		stroke(160); // Gray
-	        		break;
-	    	}
-
-	  		// Hair:
-	  		// Use pushMatrix() to save starting origin
-			// Translate to the point I want as the center (222.5, 225)
-			// Draw 500 lines using a loop to rotate each line randomly
-			// Use popMatrix() to return to starting origin
-			pushMatrix();
-			translate(222.5, 225);
-			for (int i = 0; i < 500; i = i+1) {
-				rotate(radians(frameCount));
-				line(0, 0, random(60, 65), random(60, 65));
-			}
-			popMatrix();
-
-			// Eyes
-			stroke(0);
-			// Set fill to white
-			fill(255);
-			ellipse(200, 225, 50, 50);
-			ellipse(245, 225, 50, 50);
-
-			// Eyeballs
-			// Set fill to black
-			fill(0);
-			ellipse(245, 225, 10, 10);
-			ellipse(200, 225, 10, 10);
-		}
-	</script>
-
-	<script type="text/javascript">
-
-		var piemenu
-
-				window.onload = function () {
-						//This is the place for code snippets from the documentation -> http://wheelnavjs.softwaretailoring.net/documentation.html
-
-						//Insert generated JavaScript code from here -> http://pmg.softwaretailoring.net
-			piemenu = new wheelnav('piemenu', null, 550, 450);
-			piemenu.markerEnable = true;
-				piemenu.markerPathFunction = markerPath().TriangleMarker;
-			piemenu.clockwise = false;
-			piemenu.sliceInitPathFunction = piemenu.slicePathFunction;
-			piemenu.initPercent = .1;
-			//piemenu.wheelRadius = piemenu.wheelRadius * .83;
-			piemenu.titleSelectedAttr = { fill: "#111" };
-			piemenu.titleRotateAngle = 180;
-			piemenu.createWheel();
-
-				};
-
-		function spin() {
-			piemenu.rotateRoundCount = 15;
-			piemenu.navigateWheel(Math.floor(Math.random() * 6));
-		}
-
-	</script>
-
-	<script type="application/javascript">
-		var processingInstance;
-
-		function changeColor() {
-			if (!processingInstance) {
-				processingInstance = Processing.getInstanceById('processing-canvas');
-			}
-			processingInstance.redraw();
-		}
-	</script>
-
-	<div class="container" align="center">
-    <!--<header>
-    	<h2 id="site-title">Fred Fagan</h2>
-			<p>Software Developer / Recent PSU Grad / Constantly Learning</p>
-    </header>-->
-
+<body align="center">
 		<img id="propic" src="img/cowboy.PNG" />
 		<h2>Fred Fagan</h2>
 		<p>Software Developer / Recent PSU Grad / Constantly Learning</p>
@@ -154,14 +47,15 @@
 
 			<div id="fuzzie" class="project active-project">
 				<h1>Fuzzie</h1>
-						<p>This is an exercise using Processing and processing.js</p>
+				<p>This is an exercise using Processing and processing.js</p>
 				<canvas id="processing-canvas"> </canvas>
-				<div><p><input class="btn btn-success" type="button" value="Run" onclick="changeColor();"></p></div>
+				<p><button onclick="changeColor();">Run</button></p>
 			</div>
 
 			<div id="drinko" class="project hidden-project">
 				<h1>DrinkO</h1>
 				<p>This is an exercise using wheelnav.js</p>
+				<p>(yes, this was from my college days)</p>
 				<div id='piemenu' data-wheelnav
 					data-wheelnav-slicepath='PieSlice'
 					data-wheelnav-colors="#00cc66,#4da6ff,#ff9900,#ff6699, #ffff00"
@@ -171,23 +65,14 @@
 						<div data-wheelnav-navitemtext='Take Shot'></div>
 						<div data-wheelnav-navitemtext='Shotgun'></div>
 						<div data-wheelnav-navitemtext='NeverHaveIEver'></div>
-						<div data-wheelnav-navitemtext='4' onmouseup='alert("Place your logic here.");'></div>
-						<div data-wheelnav-navitemtext='5' onmouseup='alert("Place your logic here.");'></div>
-						<div data-wheelnav-navitemtext='6' onmouseup='alert("Place your logic here.");'></div>
-						<div data-wheelnav-navitemtext='7' onmouseup='alert("Place your logic here.");'></div>
+						<div data-wheelnav-navitemtext='Ride the Bus'></div>
+						<div data-wheelnav-navitemtext='Slap the Bag'></div>
+						<div data-wheelnav-navitemtext='6'></div>
+						<div data-wheelnav-navitemtext='7'></div>
 				</div>
-				<input class="btn btn-success" type="button" value="Spin" onclick="spin();">
+				<button onclick="spin();">Spin</button>
 			</div>
 
 		</div>
-
-		<!--<h3>Projects</h3>
-		<h3>Experience</h3>
-		<h3>Contact</h3>
-
-    <footer>
-      <p>&copy;2017 Fred Fagan. All Rights Reserved.</p>
-    </footer>-->
-	</container>
 </body>
 </html>
