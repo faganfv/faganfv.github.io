@@ -5,7 +5,7 @@
 // Set up the sketch at the beginning of the run
 void setup() {
     // Set the size of the sketch
-    size(440,350);
+    size(250,250);
     noLoop(); // So that it doesn't keep changing colors and moving lines
 }
 
@@ -17,8 +17,8 @@ void draw() {
     // Feet
     // Set the position and size of the ellipse
   fill(255);
-    ellipse(175, 295, 100, 50);
-    ellipse(275, 295, 100, 50);
+    ellipse(75, 195, 100, 50);
+    ellipse(175, 195, 100, 50);
 
     // Get random hair color each run
     int hairColor = int(random(1,6));
@@ -42,13 +42,13 @@ void draw() {
           break;
     }
 
-    // Hair:
-    // Use pushMatrix() to save starting origin
+  // Hair:
+  // Use pushMatrix() to save starting origin
   // Translate to the point I want as the center (222.5, 225)
   // Draw 500 lines using a loop to rotate each line randomly
   // Use popMatrix() to return to starting origin
   pushMatrix();
-  translate(222.5, 225);
+  translate(122.5, 125);
   for (int i = 0; i < 500; i = i+1) {
     rotate(radians(frameCount));
     line(0, 0, random(60, 65), random(60, 65));
@@ -59,12 +59,12 @@ void draw() {
   stroke(0);
   // Set fill to white
   fill(255);
-  ellipse(200, 225, 50, 50);
-  ellipse(245, 225, 50, 50);
+  ellipse(100, 125, 50, 50);
+  ellipse(145, 125, 50, 50);
 
   // Eyeballs
   // Set fill to black
   fill(0);
-  ellipse(245, 225, 10, 10);
-  ellipse(200, 225, 10, 10);
+  ellipse(145, 125, 10, 10);
+  ellipse(100, 125, 10, 10);
 }
