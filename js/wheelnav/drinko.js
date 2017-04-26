@@ -16,5 +16,5 @@ window.onload = function () {
 
 function spin() {
   piemenu.rotateRoundCount = 15;
-  piemenu.navigateWheel(Math.floor(Math.random() * 6));
+  piemenu.navigateWheel(Math.floor(Math.random() * 8));
 }
