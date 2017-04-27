@@ -6,6 +6,13 @@ body {
 h2 {
   color: #D7DAE0;
 }
+h3 {
+  display: inline;
+  margin-left: 10px;
+  position: relative;
+  bottom: 10px;
+  color: #FCC21B;
+}
 
 .container {
   margin-left: 15em;
