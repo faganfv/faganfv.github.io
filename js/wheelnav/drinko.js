@@ -11,7 +11,6 @@ window.onload = function () {
   piemenu.titleSelectedAttr = { fill: "#111" };
   piemenu.titleRotateAngle = 180;
   piemenu.createWheel();
-  spin();
 };
 
 function spin() {
