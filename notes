@@ -1,6 +1,6 @@
 
 
--Load JS when they want to see a new project
+-Load JS when user want to see a new project
 (If loading time is annoying)
 -Display Loading Bar
 
@@ -10,3 +10,7 @@ so that the initial spin will be done
 -Spin button colors of the wheel
 
 -HTTPS for custom domain?
+
+-Make tagline H3 (add class so it's not yellow)
+
+-Add Hackathons/Conferences attended
