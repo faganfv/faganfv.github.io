@@ -14,7 +14,7 @@
 
 <link href="https://fonts.googleapis.com/css?family=Shanti" rel="stylesheet">
 
-<link rel="stylesheet" href="css/creativebuttons/componet.css" />
+<link rel="stylesheet" href="css/creativebuttons/component.css" />
 <script src="js/creativebuttons/modernizr.custom.js"></script>
 <script src="js/creativebuttons/classie.js"></script>
 
@@ -55,8 +55,8 @@
 		<h3>Under Construction</h3>
 
 		<p>
-		<button onclick="showPreviousProject()">Previous</button>
-		<button onclick="showNextProject()">Next</button>
+		<button onclick="showPreviousProject()" class="btn btn-7 btn-7c btn-7c-left btn-icon-only icon-arrow-left"></button>
+		<button onclick="showNextProject()" class="btn btn-7 btn-7c btn-7c-right btn-icon-only icon-arrow-right"></button>
 		</p>
 
 		<div id="projects">
@@ -100,7 +100,22 @@
 				</div>
 				<button onclick="spin();">Spin</button>
 			</div>
-
 		</div>
+		<script>
+			var arrowButtons = document.getElementsByClassName("btn-7");
+			//arrowButtons.forEach( function( el, i ) { el.addEventListener('click', activate, false); });
+			for (var i = 0; i < arrowButtons.length; i++) {
+				arrowButtons[i].addEventListener('click', activate, false);
+			}
+
+			function activate() {
+				var self = this, activatedClass = 'btn-activated';
+
+				if(!classie.has(this, activatedClass)) {
+					classie.add(this, activatedClass);
+					setTimeout(function() { classie.remove(self, activatedClass) }, 1000);
+				}
+			}
+		</script>
 </body>
 </html>
