@@ -9,3 +9,10 @@
 -Make spin button the colors of the wheel
 
 -Add Hackathons/Conferences attended
+
+-Remove creative button default css?
+
+-Add favicon
+<link rel="shortcut icon" href="../favicon.ico">
+
+-Fix fuzzie in Chrome
